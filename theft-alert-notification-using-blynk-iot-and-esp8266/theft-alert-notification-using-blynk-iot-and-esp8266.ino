@@ -15,12 +15,12 @@ char ssid[] = "vishnu";      // your WiFi name
 char pass[] = "8445200@$";   // your WiFi password
 
 
-#define PIR_SENSOR  4        // GPIO pin for PIR sensor
+#define IR_SENSOR  4        // GPIO pin for IR sensor
 BlynkTimer timer;
 
 
 void notifyOnTheft() {
-  int isTheftAlert = digitalRead(PIR_SENSOR);
+  int isTheftAlert = digitalRead(IR_SENSOR);
   Serial.println(isTheftAlert);
   if (isTheftAlert == 1) {
     Serial.println("Theft Alert in Home");
@@ -30,7 +30,7 @@ void notifyOnTheft() {
 
 
 void setup() {
-  pinMode(PIR_SENSOR, INPUT);
+  pinMode(IR_SENSOR, INPUT);
   Serial.begin(115200);
   Blynk.begin(auth, ssid, pass);
   timer.setInterval(5000L, notifyOnTheft);
